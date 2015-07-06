@@ -59,7 +59,7 @@ if SERVER then
 		self.phys:SetVelocity( self.data.dir * self.data.speed )
 
 		if tr.Hit or math.abs(self:GetVelocity():Length() - self.data.speed) > 100 then
-			self:DoExplosion( tr.HitPos )
+			self:DoExplosion( tr.HitPos, tr.HitNormal )
 		end
 
 		self:NextThink(CurTime())
@@ -69,7 +69,7 @@ if SERVER then
 	function ENT:Touch( e )
 
 	end
-	function ENT:DoExplosion( pos )
+	function ENT:DoExplosion( pos, normal )
 		self.LoopSound:Stop()
 
 		local ed = EffectData()
@@ -81,7 +81,7 @@ if SERVER then
 		local dmginfo = DamageInfo()
 		dmginfo:SetAttacker( IsValid(self.data.owner) and self.data.owner or nil )
 		dmginfo:SetDamageType( DMG_BLAST_SURFACE )
-
+		
 		-- find players in radius
 		local rad = 256
 		local affected = ents.FindInSphere( pos, rad )
@@ -94,6 +94,8 @@ if SERVER then
 
 			local dir = (v:GetPos() - pos)
 			dir:Normalize()
+			
+			dir = dir + normal -- make it force away from the rocket, but also force perpendicular to the surface.
 
 			local phys = v:GetPhysicsObject()
 			if v:IsPlayer() then
