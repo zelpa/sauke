@@ -7,6 +7,14 @@ local HideElements = {
 	["CHudAmmo"] = true
 }
 
+function GM:HUDShouldDraw( el )
+	if HideElements[ el ] then
+		return false
+	else
+		return true
+	end
+end
+
 --local CrosshairStyle = CreateClientConVar("deathrun_crosshair_style", 1, true, false)
 local XHairThickness = CreateClientConVar("deathrun_crosshair_thickness", 2, true, false)
 local XHairGap = CreateClientConVar("deathrun_crosshair_gap", 8, true, false)
@@ -16,7 +24,7 @@ local XHairGreen = CreateClientConVar("deathrun_crosshair_green", 255, true, fal
 local XHairBlue = CreateClientConVar("deathrun_crosshair_blue", 255, true, false)
 local XHairAlpha = CreateClientConVar("deathrun_crosshair_alpha", 255, true, false)
 
-function DR:DrawCrosshair( x, y )
+function SaukeDrawCrosshair( x, y )
 	local thick = XHairThickness:GetInt()
 	local gap = XHairGap:GetInt()
 	local size = XHairSize:GetInt()
@@ -27,3 +35,7 @@ function DR:DrawCrosshair( x, y )
 	surface.DrawRect(x + (gap/2), y - (thick/2), size, thick )
 	surface.DrawRect(x - (size + gap/2), y - (thick/2), size, thick )
 end
+
+hook.Add("HUDPaint", "SaukeDrawCrosshair", function()
+	SaukeDrawCrosshair( ScrW()/2, ScrH()/2 )	
+end)
