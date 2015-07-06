@@ -5,19 +5,23 @@ include( 'shared.lua' )
 
 AddCSLuaFile( "cl_hud.lua" )
 
-
 // Serverside only stuff goes here
 
 /*---------------------------------------------------------
    Name: gamemode:PlayerLoadout( )
    Desc: Give the player the default spawning weapons/ammo
 ---------------------------------------------------------*/
-function GM:PlayerLoadout( pl )
+function GM:PlayerLoadout( ply )
 
-	pl:GiveAmmo( 255,	"Pistol", 		true )
-	
-	pl:Give( "weapon_pistol" )
-	
+	local teamcol = team.GetColor( ply:Team() )
+	--print(teamcol)
+	local playercol = Vector( teamcol.r/255, teamcol.g/255, teamcol.b/255 )
+
+	ply:SetRunSpeed( 500 )
+	ply:SetWalkSpeed( 500 )
+	ply:SetJumpPower( 200 )
+
+	ply:SetPlayerColor( playercol )
 end
 
 local combinemodels = {
@@ -51,10 +55,17 @@ function GM:PlayerInitialSpawn( ply )
 end
 
 function GM:PlayerSpawn( ply )
+
+	GAMEMODE:PlayerLoadout( ply )
+
 	if ply:Team() == TEAM_COMBINE then
 		ply:SetModel( table.Random( combinemodels ) )
 	end
 	if ply:Team() == TEAM_REBEL then
 		ply:SetModel( table.Random( rebelmodels ) )
 	end
+end
+
+function GM:GetFallDamage( ply, speed )
+	return ( 0 )
 end
