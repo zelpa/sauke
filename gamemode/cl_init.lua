@@ -1,5 +1,5 @@
 include( 'shared.lua' )
 
-AddCSLuaFile( "cl_hud.lua" )
+include( "cl_hud.lua" )
 
 // Clientside only stuff goes here

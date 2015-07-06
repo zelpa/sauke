@@ -88,7 +88,7 @@ if SERVER then
 
 		for k,v in ipairs( affected ) do
 			local force = 1000
-			local dist = pos:Distance( v:GetPos() )
+			local dist = pos:Distance( v:GetPos() + v:OBBCenter() )
 
 			local frac = 1-(dist/rad)
 
@@ -97,13 +97,13 @@ if SERVER then
 
 			local phys = v:GetPhysicsObject()
 			if v:IsPlayer() then
-				v:SetVelocity( dir * force * frac )
+				v:SetVelocity( dir * force * frac -v:GetVelocity() / 2 )
 			end
 			if IsValid( phys ) then
 				phys:SetVelocity( dir * (force * frac) )
 			end
 
-			dmginfo:SetDamage( self.data.damage*frac * (v == self.data.owner and 0.5 or 1) )
+			dmginfo:SetDamage( self.data.damage*frac * (v == self.data.owner and 0.1 or 1) )
 
 			-- damage the enemiesz
 			v:TakeDamageInfo( dmginfo )

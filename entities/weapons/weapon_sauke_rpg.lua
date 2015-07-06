@@ -1,4 +1,3 @@
-
 SWEP.Author			= ""
 SWEP.Contact		= ""
 SWEP.Purpose		= ""
@@ -15,10 +14,11 @@ SWEP.WorldModel		= "models/weapons/w_rocket_launcher.mdl"
 SWEP.Spawnable			= true
 SWEP.AdminSpawnable		= true
 
-SWEP.Primary.ClipSize		= 4					-- Size of a clip
-SWEP.Primary.DefaultClip	= 20				-- Default number of bullets in a clip
+SWEP.Primary.ClipSize		= 8					-- Size of a clip
+SWEP.Primary.DefaultClip	= 24				-- Default number of bullets in a clip
 SWEP.Primary.Automatic		= false				-- Automatic/Semi Auto
 SWEP.Primary.Ammo			= "smg1"
+SWEP.Primary.Delay = 0.4
 
 SWEP.Secondary.ClipSize		= 0					-- Size of a clip
 SWEP.Secondary.DefaultClip	= 0				-- Default number of bullets in a clip
@@ -70,6 +70,8 @@ function SWEP:PrimaryAttack()
 
 	self:TakePrimaryAmmo( 1 )
 	
+	self:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
+
 end
 
 function SWEP:SecondaryAttack()

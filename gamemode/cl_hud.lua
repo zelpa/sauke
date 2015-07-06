@@ -15,14 +15,14 @@ function GM:HUDShouldDraw( el )
 	end
 end
 
---local CrosshairStyle = CreateClientConVar("deathrun_crosshair_style", 1, true, false)
-local XHairThickness = CreateClientConVar("deathrun_crosshair_thickness", 2, true, false)
-local XHairGap = CreateClientConVar("deathrun_crosshair_gap", 8, true, false)
-local XHairSize = CreateClientConVar("deathrun_crosshair_size", 8, true, false)
-local XHairRed = CreateClientConVar("deathrun_crosshair_red", 255, true, false)
-local XHairGreen = CreateClientConVar("deathrun_crosshair_green", 255, true, false)
-local XHairBlue = CreateClientConVar("deathrun_crosshair_blue", 255, true, false)
-local XHairAlpha = CreateClientConVar("deathrun_crosshair_alpha", 255, true, false)
+--local CrosshairStyle = CreateClientConVar("sk_crosshair_style", 1, true, false)
+local XHairThickness = CreateClientConVar("sk_crosshair_thickness", 2, true, false)
+local XHairGap = CreateClientConVar("sk_crosshair_gap", 8, true, false)
+local XHairSize = CreateClientConVar("sk_crosshair_size", 8, true, false)
+local XHairRed = CreateClientConVar("sk_crosshair_red", 255, true, false)
+local XHairGreen = CreateClientConVar("sk_crosshair_green", 255, true, false)
+local XHairBlue = CreateClientConVar("sk_crosshair_blue", 255, true, false)
+local XHairAlpha = CreateClientConVar("sk_crosshair_alpha", 255, true, false)
 
 function SaukeDrawCrosshair( x, y )
 	local thick = XHairThickness:GetInt()
