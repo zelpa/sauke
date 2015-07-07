@@ -19,6 +19,7 @@ function GM:PlayerLoadout( ply )
 
 	ply:Give( "weapon_sauke_rpg" )
 	ply:Give( "weapon_sauke_smg" )
+	ply:Give( "weapon_sauke_boltrifle" )
 
 	ply:SetRunSpeed( 500 )
 	ply:SetWalkSpeed( 500 )

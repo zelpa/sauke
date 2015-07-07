@@ -3,29 +3,24 @@ SWEP.Contact		= ""
 SWEP.Purpose		= ""
 SWEP.Instructions	= ""
 
-SWEP.PrintName			= "SMG"
-SWEP.Slot				= 2
+SWEP.PrintName			= "Bolt Rifle"
+SWEP.Slot				= 3
 
 SWEP.ViewModelFOV	= 62
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel 		= "models/weapons/v_smg1.mdl"
-SWEP.WorldModel 	= "models/weapons/w_smg1.mdl"
+SWEP.ViewModel 		= "models/weapons/v_irifle.mdl"
+SWEP.WorldModel 	= "models/weapons/w_irifle.mdl"
 SWEP.AnimPrefix		= "python"
 
 SWEP.Spawnable			= true
 SWEP.AdminSpawnable		= true
 
-SWEP.Primary.ClipSize		= 20				// Size of a clip
+SWEP.Primary.ClipSize		= 1				// Size of a clip
 SWEP.Primary.DefaultClip	= 1024				// Default number of bullets in a clip
-SWEP.Primary.Automatic		= true				// Automatic/Semi Auto
+SWEP.Primary.Recoil			= 0
+SWEP.Primary.Automatic		= false				// Automatic/Semi Auto
 SWEP.Primary.Ammo			= "Smg1"
-SWEP.Primary.Delay 			= 0.08
-SWEP.Primary.Recoil 		= 0
-
-SWEP.Secondary.ClipSize		= 0					// Size of a clip
-SWEP.Secondary.DefaultClip	= 0				// Default number of bullets in a clip
-SWEP.Secondary.Automatic	= false				// Automatic/Semi Auto
-SWEP.Secondary.Ammo			= "Smg1"
+SWEP.Primary.Delay 			= 1
 
 /*---------------------------------------------------------
 	Initialize
@@ -62,7 +57,7 @@ function SWEP:PrimaryAttack()
 	self:EmitSound("Weapon_AR2.Single")
 	
 
-	self:ShootBullet( 35, 1, 0.001 )
+	self:ShootBullet( 150, 1, 0.001 )
 	
 	// Remove 1 bullet from our clip
 	self:TakePrimaryAmmo( 1 )
@@ -72,4 +67,8 @@ function SWEP:PrimaryAttack()
 
 	self:SetNextPrimaryFire( CurTime() + self.Primary.Delay )
 	
+end
+
+function SWEP:SecondaryAttack()
+	return end
 end
