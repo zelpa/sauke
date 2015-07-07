@@ -1,7 +1,9 @@
-SWEP.Author			= ""
-SWEP.Contact		= ""
-SWEP.Purpose		= ""
-SWEP.Instructions	= ""
+SWEP.PrintName = "Rocket Launcher"
+
+SWEP.Author			= "Arizard"
+SWEP.Contact		= "Don't"
+SWEP.Purpose		= "Launches Rockets"
+SWEP.Instructions	= "Point away from face."
 
 SWEP.DrawAmmo			= true
 SWEP.UseHands = true
