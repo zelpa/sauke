@@ -97,9 +97,11 @@ if SERVER then
 			
 			dir = dir + normal -- make it force away from the rocket, but also force perpendicular to the surface.
 
+			dir:Normalize()
+
 			local phys = v:GetPhysicsObject()
 			if v:IsPlayer() then
-				v:SetVelocity( dir * force * frac -v:GetVelocity() / 2 )
+				v:SetVelocity( dir * force * frac )
 			end
 			if IsValid( phys ) then
 				phys:SetVelocity( dir * (force * frac) )

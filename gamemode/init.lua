@@ -18,6 +18,7 @@ function GM:PlayerLoadout( ply )
 	local playercol = Vector( teamcol.r/255, teamcol.g/255, teamcol.b/255 )
 
 	ply:Give( "weapon_sauke_rpg" )
+	ply:Give( "weapon_sauke_smg" )
 
 	ply:SetRunSpeed( 500 )
 	ply:SetWalkSpeed( 500 )

@@ -15,7 +15,7 @@ SWEP.Spawnable			= true
 SWEP.AdminSpawnable		= true
 
 SWEP.Primary.ClipSize		= 8					-- Size of a clip
-SWEP.Primary.DefaultClip	= 24				-- Default number of bullets in a clip
+SWEP.Primary.DefaultClip	= 1024				-- Default number of bullets in a clip
 SWEP.Primary.Automatic		= false				-- Automatic/Semi Auto
 SWEP.Primary.Ammo			= "smg1"
 SWEP.Primary.Delay = 0.4
