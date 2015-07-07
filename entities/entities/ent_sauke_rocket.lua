@@ -33,6 +33,8 @@ function ENT:Initialize()
 		phys:EnableGravity( false )
 		self.LoopSound = CreateSound( self, "weapons/rpg/rocket1.wav" )
 		self.LoopSound:Play()
+		
+		self.trail = util.SpriteTrail( self, 0, Color(200,200,180), true, 4, 0, 1, 1 / (4*0.5), "trails/smoke.vmt")
 	end
 
 end
@@ -95,7 +97,7 @@ if SERVER then
 			local dir = (v:GetPos() - pos)
 			dir:Normalize()
 			
-			dir = dir + normal -- make it force away from the rocket, but also force perpendicular to the surface.
+			dir = dir + normal*2 -- make it force away from the rocket, but also force perpendicular to the surface.
 
 			dir:Normalize()
 
@@ -120,33 +122,5 @@ end
 if CLIENT then
 	function ENT:Draw()
 		self:DrawModel()
-
-		local ent = self
-
-		local mins = Vector(-5,-5,-5)
-		local maxs = Vector(5,5,5)
-		local startpos = ent:GetPos()
-		local dir = ent:GetForward()
-		local len = 15
-
-		local tr = util.TraceHull( {
-			start = startpos,
-			endpos = startpos + dir * len,
-			maxs = maxs,
-			mins = mins,
-			filter = ent
-		} )
-
-		render.DrawLine( tr.HitPos, startpos + dir * len, color_white, true )
-		render.DrawLine( startpos, tr.HitPos, Color( 0, 0, 255 ), true )
-
-		local clr = color_white
-		if ( tr.Hit ) then
-			clr = Color( 255, 0, 0 )
-		end
-
-		render.DrawWireframeBox( startpos, Angle( 0, 0, 0 ), mins, maxs, Color( 255, 255, 255 ), true )
-		render.DrawWireframeBox( tr.HitPos, Angle( 0, 0, 0 ), mins, maxs, clr, true )
-		
 	end
 end
